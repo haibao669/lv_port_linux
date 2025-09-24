@@ -55,3 +55,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 /Debug/
+
+# compiler aarch64 output
+/build_aarch64/

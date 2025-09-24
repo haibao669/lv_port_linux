@@ -18,6 +18,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic")
 
+option(PLATFROM_AARCH64 "aarch64编译" ON)
+
+if(PLATFROM_AARCH64)
+    message("启用aarch64交叉编译")
+    set(PATH_SYSROOT "/work/falong.lu/Downloads/sysroot_daojin")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --sysroot=${PATH_SYSROOT}")  #设置c++的编译选项
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --sysroot=${PATH_SYSROOT}")  #设置c的编译选项
+    set(CMAKE_FIND_ROOT_PATH "${CMAKE_SYSROOT}")
+    set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+    set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+    set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+endif()
+
 set(LV_BUILD_SET_CONFIG_OPTS ON CACHE BOOL
     "create CMAKE variables from lv_conf_internal.h" FORCE)
 
